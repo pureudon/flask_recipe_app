@@ -20,3 +20,7 @@ __pycache__/
 # Coverage output
 /web/.coverage
 /web/htmlcov/
+
+
+# Virtualenv
+venv/
