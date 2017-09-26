@@ -6,15 +6,8 @@ services:
   web:
     restart: always
     build: ./web
-    # expose:
-    #   - "8000"
-    ports:
-      - "8000:8000"
-    volumes:
-    - static-volume:/home/flask/app/web/project/static
-      # - /usr/src/app/web/project/static
-      # - /home/flask/app/web/project/static
-    command: /usr/local/bin/gunicorn -w 2 -b :8000 project:app
+    expose:
+      - "8000"
     depends_on:
       - postgres
 
@@ -23,30 +16,19 @@ services:
     build: ./nginx
     ports:
       - "80:80"
-    # volumes:
-    #   - /www/static
-    # volumes_from:
-    #   - web
     depends_on:
       - web
 
   postgres:
     restart: always
     build: ./postgresql
-    volumes:
-      - data-volume:/var/lib/postgresql/data
-    # expose:
-    #   - "5432"
-    ports:
-      - "5432:5432"
+    expose:
+      - "5432"
 
-volumes:
-  data-volume:
-  static-volume:
 
 
 # docker-compose build
-# docker-compose -f docker-compose.yml up -d
+# docker-compose up -d
 # docker-compose run --rm web python ./instance/db_create.py
 # docker-compose logs web
 

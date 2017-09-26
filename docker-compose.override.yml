@@ -2,20 +2,21 @@ version: '3'
  
 services:
   web:
-    build: ./web
     ports:
       - "8000:8000"
     environment:
       - FLASK_APP=run.py
       - FLASK_DEBUG=1
     volumes:
-      # - ./web/:/usr/src/app/web
       - ./web:/home/flask/app/web
     command: /usr/local/bin/flask run --host=0.0.0.0 --port 8000
  
   postgres:
     ports:
       - "5432:5432"
+    volumes:
+      - ./postgresql/db_data:/var/lib/postgresql/data
 
 
-# docker-compose run --rm web python ./instance/db_create.py
+# docker-compose build
+# docker-compose up -d

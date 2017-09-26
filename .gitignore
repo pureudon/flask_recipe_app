@@ -11,6 +11,10 @@ __pycache__/
 web/.idea/
 web/pycharm_venv/
 
+# VS Code files
+.vscode/
+
+
 # Instance Folder - used for configuration parameters
 /web/instance/db_create_full.py
 /web/instance/flask_full.cfg
@@ -18,6 +22,8 @@ web/pycharm_venv/
 
 # Initialization file for Postgress Docker Image
 /postgresql/Dockerfile
+/postgresql/db_data
+
 
 # Coverage output
 /web/.coverage
