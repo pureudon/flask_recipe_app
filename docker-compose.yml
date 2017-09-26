@@ -1,3 +1,5 @@
+# http://www.patricksoftwareblog.com/using-docker-for-flask-application-development-not-just-production/
+
 version: '2'
 
 services:
@@ -6,8 +8,9 @@ services:
     build: ./web
     expose:
       - "8000"
-    volumes:
-      - /usr/src/app/web/project/static
+    # volumes:
+      # - /usr/src/app/web/project/static
+      # - /home/flask/app/web/project/static
     command: /usr/local/bin/gunicorn -w 2 -b :8000 project:app
     depends_on:
       - postgres
@@ -17,10 +20,10 @@ services:
     build: ./nginx
     ports:
       - "80:80"
-    volumes:
-      - /www/static
-    volumes_from:
-      - web
+    # volumes:
+    #   - /www/static
+    # volumes_from:
+    #   - web
     depends_on:
       - web
 
@@ -37,3 +40,49 @@ services:
       - data
     expose:
       - "5432"
+
+
+
+
+# docker-compose build
+# docker-compose -f docker-compose.yml up -d
+# docker-compose run --rm web python ./instance/db_create.py
+# docker-compose logs web
+
+
+
+# Docker Command Reference
+
+# Start or Re-start Docker Machine:
+# $ docker-machine start default
+# $ eval $(docker-machine env default)
+
+# Build all of the images in preparation for running your application:
+# $ docker-compose build
+
+# Using Docker Compose to run the multi-container application (in daemon mode):
+# $ docker-compose up -d
+# $ docker-compose -f docker-compose.yml up -d
+
+# View the logs from the different running containers:
+# $ docker-compose logs
+# $ docker-compose logs web # or whatever service you want
+
+# Stop all of the containers that were started by Docker Compose:
+# $ docker-compose stop
+
+# Run a command in a specific container:
+# $ docker-compose run –rm web python ./instance/db_create.py
+# $ docker-compose run web bash
+
+# Check the containers that are running:
+# $ docker ps
+
+# Stop all running containers:
+# $ docker stop $(docker ps -a -q)
+
+# Delete all running containers:
+# $ docker rm $(docker ps -a -q)
+
+# Delete all untagged Docker images
+# $ docker rmi $(docker images | grep “^” | awk ‘{print $3}’)
