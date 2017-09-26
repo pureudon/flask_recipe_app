@@ -8,6 +8,8 @@ __pycache__/
 
 # PyCharm files
 .idea/
+web/.idea/
+web/pycharm_venv/
 
 # Instance Folder - used for configuration parameters
 /web/instance/db_create_full.py
