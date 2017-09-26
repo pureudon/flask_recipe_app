@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
  
 services:
   web:
@@ -11,7 +11,7 @@ services:
     volumes:
       # - ./web/:/usr/src/app/web
       - ./web:/home/flask/app/web
-    command: flask run --host=0.0.0.0 --port 8000
+    command: /usr/local/bin/flask run --host=0.0.0.0 --port 8000
  
   postgres:
     ports:
